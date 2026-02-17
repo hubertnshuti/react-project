@@ -1,11 +1,15 @@
 export default function ParentComponent() {
+  function greetings(){
+    return "Hello World!"
+  }
   return (
     <>
-      <mainUsersComponent/>
+      <MainUsersComponent/>
       <UserComponent 
       name = "John"
       age = {21}
       address = "Kigali"
+      greeting = {greetings}
       />
       <ProfileComponent />
       <FeedComponent />
@@ -13,7 +17,7 @@ export default function ParentComponent() {
   );
 }
 
-function mainUsersComponent(){
+function MainUsersComponent(){
   const users = [
     { id: 1, name: 'Nathan', role: 'Web Developer' },
     { id: 2, name: 'John', role: 'Web Designer' },
@@ -35,7 +39,7 @@ function mainUsersComponent(){
 }
 
 function UserComponent(props) {
-  return <h1> User Component is {props.name}, lives in {props.address} and he is {props.age}</h1>;
+  return <h1> User Component is {props.name}, lives in {props.address} and he is {props.age}. <br />VALUE OF FUNCTION PROP IS {props.greeting()}</h1>;
 }
 
 function ProfileComponent() {
