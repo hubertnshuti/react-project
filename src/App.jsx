@@ -1,7 +1,10 @@
+import { useState } from 'react';
+
 export default function ParentComponent() {
   function greetings(){
     return "Hello World!"
   }
+  const [name, setName] = useState("John");
   return (
     <>
       <MainUsersComponent/>
@@ -13,6 +16,11 @@ export default function ParentComponent() {
       />
       <ProfileComponent />
       <FeedComponent />
+      <StateExample 
+      name={name}  
+      setName={setName}
+      />
+      <Counter/>
     </>
   );
 }
@@ -48,6 +56,27 @@ function ProfileComponent() {
 
 function FeedComponent() {
   return <h1> Feed Component</h1>;
+}
+
+function StateExample({name, setName}) {
+return (
+	<>
+		<h1>Hello {name}</h1>
+		<button onClick={() => { name === "Mark"? setName("John"): setName("Mark")}}>
+	        Change name
+	  </button>
+	</>
+  );
+}
+
+function Counter(){
+  const [count, setCount] = useState(0);
+  return(
+    <>
+      <h3>I'm counting {count}</h3>
+      <button onClick={()=> setCount(count+1)}>Count</button>
+    </>
+  )
 }
 
 
