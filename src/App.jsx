@@ -8,7 +8,7 @@ export default function ParentComponent() {
   return (
     <>
       <MainUsersComponent/>
-      <UserComponent 
+      <UserComponent
       name = "John"
       age = {21}
       address = "Kigali"
@@ -47,7 +47,27 @@ function MainUsersComponent(){
 }
 
 function UserComponent(props) {
-  return <h1> User Component is {props.name}, lives in {props.address} and he is {props.age}. <br />VALUE OF FUNCTION PROP IS {props.greeting()}</h1>;
+  const { user } = props
+  let button = <button>Login</button>
+
+  if(!user){
+        button = <button>Logout</button>
+  }
+  return (
+    <>
+      <h1> User Component </h1>
+      <p>Name: {props.name}</p>
+      <p>Age: {props.age}</p>
+      <p>Address: {props.address}</p>
+      <p>{props.greeting()}</p>
+
+      {/*Conditional rendering with &&*/}
+      {props.name === "Ngenzi" && 
+      <p>The following button tests partial rendering</p>
+      }
+      {button}
+    </>
+  );
 }
 
 function ProfileComponent() {
