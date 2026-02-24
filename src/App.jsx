@@ -5,6 +5,10 @@ export default function ParentComponent() {
     return "Hello World!"
   }
   const [name, setName] = useState("John");
+
+  //buttonShower Info
+  
+
   return (
     <>
       <MainUsersComponent/>
@@ -21,6 +25,7 @@ export default function ParentComponent() {
       setName={setName}
       />
       <Counter/>
+      <ButtonShower/>
     </>
   );
 }
@@ -47,6 +52,7 @@ function MainUsersComponent(){
 }
 
 function UserComponent(props) {
+  // Partial rendering, login if no user and logout if there is user
   const { user } = props
   let button = <button>Login</button>
 
@@ -97,6 +103,23 @@ function Counter(){
       <button onClick={()=> setCount(count+1)}>Count</button>
     </>
   )
+}
+
+function ButtonShower(){
+  let [visibility, setVisibility] = useState(true);
+
+  const toggleStatus = () =>{
+    setVisibility(!visibility);
+  }
+  return (
+    <>
+      <h1>Changing text visibility upon button click</h1>
+      {visibility && (
+        <h3>This text will be shown/hidden once the below button is clicked</h3>
+      )}
+      <button onClick={toggleStatus}>{visibility ? "Hide" : "Show"} Paragraph</button>
+    </>
+  );
 }
 
 
