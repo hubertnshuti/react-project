@@ -6,9 +6,6 @@ export default function ParentComponent() {
   }
   const [name, setName] = useState("John");
 
-  //buttonShower Info
-  
-
   return (
     <>
       <MainUsersComponent/>
@@ -26,6 +23,8 @@ export default function ParentComponent() {
       />
       <Counter/>
       <ButtonShower/>
+      <PlayCSS/>
+      <Form/>
     </>
   );
 }
@@ -100,26 +99,42 @@ function Counter(){
   return(
     <>
       <h3>I'm counting {count}</h3>
-      <button onClick={()=> setCount(count+1)}>Count</button>
+      <button onClick={()=> setCount(prev => prev + 2)}>Count</button>
     </>
   )
 }
 
 function ButtonShower(){
-  let [visibility, setVisibility] = useState(true);
+  const [visibility, setVisibility] = useState(true);
 
-  const toggleStatus = () =>{
-    setVisibility(!visibility);
-  }
-  return (
+  const toggleVisibility = () => setVisibility(prev => !prev)
+
+  return(
     <>
-      <h1>Changing text visibility upon button click</h1>
+      <h1>Change visibility by Button Click</h1>
       {visibility && (
-        <h3>This text will be shown/hidden once the below button is clicked</h3>
+        <h4>This text will be shown/hidden on button click.</h4>
       )}
-      <button onClick={toggleStatus}>{visibility ? "Hide" : "Show"} Paragraph</button>
+      <button onClick={toggleVisibility}>{visibility? "Hide":"Show"} message</button>
     </>
   );
 }
 
+function PlayCSS() {
+  const pStyle = {
+  fontSize: '16px',
+  color: 'blue'
+}
+
+  return (
+    <>
+    <p style={pStyle}>Hello World!</p>
+    <p style={pStyle}>The weather is sunny today.</p>
+    
+    <p style={{ ...pStyle, color: 'green', textAlign: 'right' }}>
+      When you go to work, bring your umbrella with you!
+    </p>
+    </>
+  )
+}
 
