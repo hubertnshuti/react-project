@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ParentComponent() {
   function greetings(){
@@ -25,6 +25,7 @@ export default function ParentComponent() {
       <ButtonShower/>
       <PlayCSS/>
       <Form/>
+      <FetchTasks/>
     </>
   );
 }
@@ -178,4 +179,21 @@ function Form(){
       </form>
     </>
   )
+}
+
+function FetchTasks(){
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    const task = await response.json();
+    console.log(task)
+    setTitle(task.title)
+  };
+
+return <h1>This is the title of fetched Task <span style={{color:'blue', fontSize: 16}}>{title}</span></h1>;
 }
