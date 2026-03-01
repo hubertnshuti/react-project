@@ -138,3 +138,19 @@ function PlayCSS() {
   )
 }
 
+function Form(){
+  const [userName, setUserName] = useState();
+
+  return(
+    <>
+      <form>
+        Username:
+        <input 
+        type='text' 
+        name='username' 
+        value={userName} 
+        onChange={e => setUserName(e.target.value)}/>
+      </form>
+    </>
+  )
+}
