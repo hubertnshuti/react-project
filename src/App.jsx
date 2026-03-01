@@ -139,17 +139,42 @@ function PlayCSS() {
 }
 
 function Form(){
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
+  const [userNameError, setUserNameError] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if(userNameError){
+      alert("Unable to submit: the form contain error(s)")
+    }else{
+      alert(userName)
+    }
+  }
+
+  const handleUserName = e => {
+    const { value } = e.target;
+    setUserName(value);
+
+    if(value.length > 6){
+      setUserNameError("Oops! The name must be 6 or less characters!");
+    }else{
+      setUserNameError();
+    }
+  }
 
   return(
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         Username:
         <input 
-        type='text' 
-        name='username' 
-        value={userName} 
-        onChange={e => setUserName(e.target.value)}/>
+          type='text' 
+          name='username' 
+          value={userName} 
+          onChange={handleUserName}
+        /> 
+        <p style={{color: "red"}}>{userNameError}</p>
+        <br/>
+        <button>Submit</button>
       </form>
     </>
   )
